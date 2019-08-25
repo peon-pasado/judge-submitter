@@ -2,3 +2,4 @@
 *.cpp
 *.sw*
 *__pycache__
+*_histoty
