@@ -4,8 +4,12 @@ from getpass import getpass
 import argparse
 from robobrowser import RoboBrowser
 import requests
+from dotenv import load_dotenv
+load_dotenv()
+import os
 import json
 import time
+
 
 def get_submission_data(user):
     req = requests.get('https://codeforces.com/api/user.status?'
@@ -22,19 +26,19 @@ def get_submission_data(user):
 def main():
     parser = argparse.ArgumentParser(
         description='Submit codeforces in command line')
-    parser.add_argument('user', type=str,
-                        help='Your codeforces ID')
+    #parser.add_argument('user', type=str,
+    #                    help='Your codeforces ID')
     parser.add_argument('prob', type=str,
                         help='Codeforces problem ID (Ex: 33C)')
-    parser.add_argument('file', type=str,
+    parser.add_argument('file', type=argparse.FileType('r'),
                         help='path to the source code')
     args = parser.parse_args()
 	
 
-    user_name = args.user
+    user_name = os.getenv('HANDLE')#args.user
     #last_id, _ = get_submission_data(user_name)
 
-    passwd = getpass()
+    passwd = os.getenv('PASS')#getpass()
 
     start_time = time.time()
     browser = RoboBrowser()
@@ -59,8 +63,13 @@ def main():
 
     browser.open('https://codeforces.com/problemset/submit')
     submit_form = browser.get_form(class_='submit-form')
+
     submit_form['submittedProblemCode'] = args.prob
-    submit_form['sourceFile'] = args.file
+    submit_form['source'] = str(args.file.read())
+    
+    submit_form['source'].value += '///'
+
+    #time.sleep(5)
     browser.submit_form(submit_form)
 
     '''
@@ -74,15 +83,16 @@ def main():
 
     print("times: ", end_time - start_time)
 
-    '''
     print('Submitted, wait for result...')
     while True:
         id_, verdict = get_submission_data(user_name)
-        if id_ != last_id and verdict != 'TESTING':
+        if id_ != "last_id" and verdict != 'TESTING':
             print('Verdict = {}'.format(verdict))
             break
-        time.sleep(5)
-    '''
+        print("testing", end="")
+        for i in range(3):
+            print(".", end="")
+            time.sleep(1)
 
 if __name__ == '__main__':
     main()
