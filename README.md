@@ -3,7 +3,6 @@ a submitter to online judges (only codeforces)
 
 ### install:
 
-	- docker-compose build
 	- docker-compose up -d
 	- docker-compose run submitter bash
 	- cd code
