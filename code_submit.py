@@ -66,10 +66,7 @@ def main():
 
     submit_form['submittedProblemCode'] = args.prob
     submit_form['source'] = str(args.file.read())
-    
-    submit_form['source'].value += '///'
 
-    #time.sleep(5)
     browser.submit_form(submit_form)
 
     '''
@@ -89,10 +86,6 @@ def main():
         if id_ != "last_id" and verdict != 'TESTING':
             print('Verdict = {}'.format(verdict))
             break
-        print("testing", end="")
-        for i in range(3):
-            print(".", end="")
-            time.sleep(1)
 
 if __name__ == '__main__':
     main()
