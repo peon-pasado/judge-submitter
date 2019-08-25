@@ -34,7 +34,7 @@ def main():
         description='Submit codeforces in command line')
     #parser.add_argument('user', type=str,
     #                    help='Your codeforces ID')
-    parser.add_argument('prob', type=str,
+    parser.add_argument('-codeforces', action='store_true',
                         help='Codeforces problem ID (Ex: 33C)')
     parser.add_argument('file', type=argparse.FileType('r'),
                         help='path to the source code')
@@ -63,6 +63,7 @@ def main():
     enter_form = browser.get_form('enterForm')
     enter_form['handleOrEmail'] = user_name
     enter_form['password'] = passwd
+    
     browser.submit_form(enter_form)
 
     try:
@@ -87,10 +88,10 @@ def main():
     browser.open('https://codeforces.com/problemset/submit')
     submit_form = browser.get_form(class_='submit-form')
 
-    submit_form['submittedProblemCode'] = args.prob
+    submit_form['submittedProblemCode'] = args.file.name.split('.')[0]
     submit_form['source'] = str(args.file.read())
 
-    browser.submit_form(submit_form)
+    #browser.submit_form(submit_form)
 
     if browser.url[-6:] != 'status':
         print('Your submission has failed, probably '
