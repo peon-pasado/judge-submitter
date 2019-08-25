@@ -12,5 +12,5 @@ a submitter to online judges (only codeforces)
 	configure .env (see .sample-env)
 		
 ```cpp	
-python3 admin.py [problem-id] [problem-file]
+python3 main.py [problem-id] [problem-file]
 ```
