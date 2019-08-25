@@ -26,10 +26,10 @@ def get_submission_data(user):
 
 def main():
 
-	'''
+    '''
 		get variables
-	'''
-	########################
+    '''
+    ########################
     parser = argparse.ArgumentParser(
         description='Submit codeforces in command line')
     #parser.add_argument('user', type=str,
@@ -45,18 +45,18 @@ def main():
     #last_id, _ = get_submission_data(user_name)
 
     passwd = os.getenv('PASS')#getpass()
-	#######################
+    #######################
 	
 
     #start_time = time.time()
 
-	###########################
-	'''
+    ###########################
+    '''
 		@TODO:
 			- make a class
 			- return a browser
 			- make contract with a browser
-	'''
+    '''
     browser = RoboBrowser()
     browser.open('https://codeforces.com/enter')
 
@@ -77,13 +77,13 @@ def main():
               "a wrong password.")
         return 
 	
-	##########################
+    ##########################
 
-	###########
-	'''
+    ###########
+    '''
 		submit
 
-	'''
+    '''
     browser.open('https://codeforces.com/problemset/submit')
     submit_form = browser.get_form(class_='submit-form')
 
@@ -96,19 +96,19 @@ def main():
         print('Your submission has failed, probably '
               'because you have submit the same file before.')
         return
-	############
+    ############
 
     #end_time = time.time()
     #print("times: ", end_time - start_time)
 
-	################
-	'''
+    ################
+    '''
 		wait result
-	'''
+    '''
     print('Submitted, wait for result...')
     while True:
         id_, verdict = get_submission_data(user_name)
         if id_ != "last_id" and verdict != 'TESTING':
             print('Verdict = {}'.format(verdict))
             break
-	#################
+    #################
