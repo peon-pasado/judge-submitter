@@ -1,3 +1,4 @@
 .env
 *.cpp
 *.sw*
+*__pycache__
