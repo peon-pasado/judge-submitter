@@ -1,5 +1,5 @@
 # judge-submitter
-a submitter to online judges
+a submitter to online judges (only codeforces)
 
 ### install:
 

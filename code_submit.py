@@ -16,8 +16,10 @@ def get_submission_data(user):
                        'handle={}&from=1&count=1'.format(user))
     content = req.content.decode()
     js = json.loads(content)
+
     if 'status' not in js or js['status'] != 'OK':
         raise ConnectionError('Codeforces BOOM!')
+
     res = js['result'][0]
     id_, verdict = res['id'], res['verdict']
     return id_, verdict
