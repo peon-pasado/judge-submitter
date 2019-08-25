@@ -24,7 +24,6 @@ def get_submission_data(user):
     id_, verdict = res['id'], res['verdict']
     return id_, verdict
 
-
 def main():
     parser = argparse.ArgumentParser(
         description='Submit codeforces in command line')
@@ -89,5 +88,3 @@ def main():
             print('Verdict = {}'.format(verdict))
             break
 
-if __name__ == '__main__':
-    main()
