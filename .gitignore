@@ -1,2 +1,2 @@
 .env
-*.cpp
+[a-zA-Z0-9\-]*.cpp
