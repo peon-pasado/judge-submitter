@@ -13,5 +13,5 @@ a submitter to online judges
 	configure .env (see .sample-env)
 		
 ```cpp	
-	python3 code_submit.py [problem-id] [problem-file]
+python3 code_submit.py [problem-id] [problem-file]
 ```
