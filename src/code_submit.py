@@ -9,6 +9,7 @@ load_dotenv()
 import os
 import json
 import time
+import lxml
 
 
 def get_submission_data(user):
@@ -57,7 +58,7 @@ def main():
 			- return a browser
 			- make contract with a browser
     '''
-    browser = RoboBrowser()
+    browser = RoboBrowser(parser='lxml')
     browser.open('https://codeforces.com/enter')
 
     enter_form = browser.get_form('enterForm')
@@ -90,8 +91,7 @@ def main():
 
     submit_form['submittedProblemCode'] = args.file.name.split('.')[0]
     submit_form['source'] = str(args.file.read())
-
-    #browser.submit_form(submit_form)
+    browser.submit_form(submit_form)
 
     if browser.url[-6:] != 'status':
         print('Your submission has failed, probably '
