@@ -2,6 +2,7 @@ version: '3'
 
 services:
   submitter:
+    container_name: submitter
     build: .
     volumes:
-      - .:/code
+      - .:/root
